@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Amplify from 'aws-amplify';
+import Amplify, { Analytics} from 'aws-amplify';
 import aws_exports from './aws-exports';
 
 Amplify.configure(aws_exports);
 
 class App extends Component {
   render() {
+    Analytics.record('appRender');
     return (
       <div className="App">
         <header className="App-header">
