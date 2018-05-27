@@ -5,7 +5,7 @@ import './App.css';
 import Amplify, { Analytics} from 'aws-amplify';
 import aws_exports from './aws-exports';
 
-import { withAuthenticator } from 'aws-amplify-react';
+import { Authenticator } from 'aws-amplify-react';
 
 Amplify.configure(aws_exports);
 
@@ -26,4 +26,16 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, { includeGreetings: true });
+class AppWithAuth extends Component {
+    render() {
+        return  (
+            <div>
+              <Authenticator>
+                <App/>
+              </Authenticator>
+            </div>
+        )
+    }
+}
+
+export default AppWithAuth;
