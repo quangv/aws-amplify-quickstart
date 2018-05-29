@@ -5,12 +5,17 @@ import './App.css';
 import Amplify, { Analytics} from 'aws-amplify';
 import aws_exports from './aws-exports';
 
-import { Authenticator } from 'aws-amplify-react';
+import { Authenticator, AuthPiece } from 'aws-amplify-react';
 
 Amplify.configure(aws_exports);
 
-class App extends Component {
-  render() {
+class App extends AuthPiece {
+  constructor(props) {
+      super(props)
+      this._validAuthStates = ['signedIn']
+  }
+  showComponent(theme) {
+    console.log('showComponent', theme)
     Analytics.record('appRender');
     return (
       <div className="App">
